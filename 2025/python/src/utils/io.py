@@ -9,3 +9,6 @@ def read_lines_relative(name: str) -> list[str]:
 
 def read_lines_here(filename: str, here: str) -> list[str]:
     return (Path(here).with_name(filename)).read_text().splitlines()
+
+def read_csv_lines_here(filename: str, here: str) -> list[list[str]]:
+    return [line.split(",") for line in read_lines_here(filename, here)]

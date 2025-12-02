@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from pathlib import Path
 from utils.io import read_lines_here
 
 lines = read_lines_here("input.txt", __file__)
