@@ -9,12 +9,15 @@ def _n_longest(input: str, n: int) -> int:
   Finds the largest possible number that can be created
   by selecting (any) N digits in order they appear.
 
+  We select the largest left-most digit as in decimal it will be the largest,
+  regardless what is on the right.
+
   E.g. for N:2 = 436241 -> 64
                    ^ ^
-  The core algorithm is simple:
-  1. Find the first largest digit 0..n (without last digit)
-  2. In the remainder after found, find the largest one again
-  3. Repeat until exhausted
+  The core algorithm is essentially a sliding window that:
+  1. Starts at the beginning, and ends at the end - N (to acommodate for the entire number)
+  2. Looks for the first largest digit in the window
+  3. Uses the digit and moves the window after it, repeating the process until we're at the end
   """
   def find_largest(input: str) -> Tuple[int, int]:
     """
