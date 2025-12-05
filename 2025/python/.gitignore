@@ -1,6 +1,6 @@
 # AoC
-input.txt
-input.csv
+*.txt
+*.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
