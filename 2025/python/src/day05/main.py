@@ -37,9 +37,9 @@ def part2() -> int:
   - If not, grab the next one and continue until the queue is empty
   """
   sorted_ranges = deque(sorted(ranges, key=lambda r: r.start))
-  print(f"Sorted ranges: {[r.start for r in sorted_ranges]}")
   current_range: Range | None = None
   final_ranges: list[Range] = []
+
   while sorted_ranges:
     range = sorted_ranges.popleft()
 
@@ -48,8 +48,7 @@ def part2() -> int:
       current_range = range
     # otherwise, check if we can merge
     else:
-      if current_range.can_merge(range):
-        # merge
+      if current_range.can_merge(range): # merge
         current_range = current_range.merge(range)
         print("Merged range", current_range)
       else: # otherwise, current range is complete and push it to final
