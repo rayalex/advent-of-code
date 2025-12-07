@@ -42,7 +42,7 @@ def part2() -> int:
   data_grid = Matrix.from_lines_col(read_lines_here("input.txt", __file__), lambda x: [char for char in x])
 
   total = 0
-  ops = "".join(data_grid.get_row(data_grid.rows - 1)) # temp back to string
+  ops = "".join(data_grid.get_row(data_grid.rows - 1)) # temp back to string for regex
 
   # use our regex matches as boundaries
   for m in re.finditer(r"[\+|\*]\s+", ops):
@@ -52,10 +52,9 @@ def part2() -> int:
 
     math_block = data_grid \
       .submatrix(0, data_grid.rows - 1, start, end) \
-      .transpose() # given we have col iter now this is not needed
     
-    # iterate rows, make each row a number
-    numbers = [int(s) for row in math_block.rows_iter() if (s := "".join(row).strip())]
+    # iterate cols and extract the number from each (each row is a digit)
+    numbers = [int(s) for col in math_block.cols_iter() if (s := "".join(col).strip())]
     total += sum(numbers) if op == '+' else prod(numbers)
 
   return total

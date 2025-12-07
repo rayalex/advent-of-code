@@ -43,5 +43,5 @@ class Matrix(Generic[T]):
         sub_data = [row[col_start:col_end] for row in self.data[row_start:row_end]]
         return Matrix(sub_data)
     
-    def __repr__(self) -> str:
-        return '\n'.join(['|'.join([str(item) for item in row]) for row in self.data])
+    def __repr__(self, sep = '') -> str:
+        return '\n'.join([sep.join([str(item) for item in row]) for row in self.data])
